@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\API\TypeController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('')->group(function () {
+    Route::prefix('types')->group(function () {
+        Route::get('', [TypeController::class, 'getAll']);
+        Route::get('{id}', [TypeController::class, 'get']);
+        Route::post('', [TypeController::class, 'create']);
+        Route::put('', [TypeController::class, 'update']);
+        Route::delete('{id}', [TypeController::class, 'delete']);
+    });
 });
