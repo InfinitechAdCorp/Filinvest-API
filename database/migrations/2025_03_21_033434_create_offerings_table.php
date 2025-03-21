@@ -11,18 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inquiries', function (Blueprint $table) {
+        Schema::create('offerings', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->foreignUlid('property_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('gender');
-            $table->string('landline');
-            $table->string('mobile');
-            $table->string('email');
-            $table->string('city');
-            $table->string('country');
-            $table->text('message');
+            $table->string('type');
+            $table->double('minimum_area', 15, 2);
+            $table->double('maximum_area', 15, 2);
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inquiries');
+        Schema::dropIfExists('offerings');
     }
 };

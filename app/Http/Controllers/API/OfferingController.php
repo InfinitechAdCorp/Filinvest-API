@@ -6,29 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Uploadable;
 
-use App\Models\Property as Model;
+use App\Models\Offering as Model;
 
-class PropertyController extends Controller
+class OfferingController extends Controller
 {
     use Uploadable;
 
-    public $model = "Property";
+    public $model = "Offering";
     public $relations = [];
-    public $directory = "properties";
+    public $directory = "";
 
     public $rules = [
-        'name' => 'required|max:255',
+        'property_id' => 'required|exists:properties,id',
         'type' => 'required|max:255',
-        'minimum_price' => 'required|decimal:0,2',
-        'maximum_price' => 'required|decimal:0,2',
-        'location' => 'required|max:255',
         'minimum_area' => 'required|decimal:0,2',
         'maximum_area' => 'required|decimal:0,2',
-        'status' => 'required|max:255',
-        'description' => 'required',
-        'logo' => 'required|file',
-        'images' => 'required|array',
-        'amenities' => 'required|array',
     ];
 
     public function getAll()
@@ -56,25 +48,6 @@ class PropertyController extends Controller
     {
         $validated = $request->validate($this->rules);
 
-        $key = 'logo';
-        if ($request[$key]) {
-            $validated[$key] = $this->upload("$this->directory/logos", $request[$key]);
-        }
-
-        $key = 'images';
-        if ($request[$key]) {
-            $images = [];
-            foreach ($request[$key] as $image) {
-                array_push($images, $this->upload("$this->directory/images", $image));
-            }
-            $validated[$key] = json_encode($images);
-        }
-
-        $key = 'amenities';
-        if ($request[$key]) {
-            $validated[$key] = json_encode($validated[$key]);
-        }
-
         $record = Model::create($validated);
 
         $response = [
@@ -87,33 +60,10 @@ class PropertyController extends Controller
 
     public function update(Request $request)
     {
-        $this->rules['id'] = 'required|exists:properties,id';
-        $this->rules['logo'] = 'nullable|file';
-        $this->rules['images'] = 'nullable|array';
-        $this->rules['amenities'] = 'nullable|array';
+        $this->rules['id'] = 'required|exists:offerings,id';
         $validated = $request->validate($this->rules);
 
         $record = Model::find($validated['id']);
-
-        $key = 'logo';
-        if ($request[$key]) {
-            $validated[$key] = $this->upload("$this->directory/logos", $request[$key]);
-        }
-
-        $key = 'images';
-        if ($request[$key]) {
-            $images = [];
-            foreach ($request[$key] as $image) {
-                array_push($images, $this->upload("$this->directory/images", $image));
-            }
-            $validated[$key] = json_encode($images);
-        }
-
-        $key = 'amenities';
-        if ($request[$key]) {
-            $validated[$key] = json_encode($validated[$key]);
-        }
-
         $record->update($validated);
 
         $response = ['message' => "Updated $this->model", 'record' => $record];

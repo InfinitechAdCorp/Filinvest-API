@@ -29,36 +29,32 @@ class Property extends Model
     public static function booted()
     {
         self::updated(function (Property $record): void {
-            $directory = "properties/logos";
+            $directory = "properties";
+            
             $key = "logo";
-
             if ($record->wasChanged($key)) {
-                Storage::disk('s3')->delete("$directory/" . $record->getOriginal($key));
+                Storage::disk('s3')->delete("$directory/logos/" . $record->getOriginal($key));
             }
 
-            $directory = "properties/images";
             $key  = "images";
-
             if ($record->wasChanged($key)) {
                 $files = json_decode($record->getOriginal($key));
                 foreach ($files as $file) {
-                    Storage::disk('s3')->delete("$directory/" . $file);
+                    Storage::disk('s3')->delete("$directory/images/" . $file);
                 }
             }
         });
 
         self::deleted(function (Property $record): void {
-            $directory = "properties/logos";
+            $directory = "properties";
+            
             $key = "logo";
+            Storage::disk('s3')->delete("$directory/logos/" . $record[$key]);
 
-            Storage::disk('s3')->delete("$directory/" . $record[$key]);
-
-            $directory = "properties/images";
             $key  = "images";
-
             $files = json_decode($record[$key]);
             foreach ($files as $file) {
-                Storage::disk('s3')->delete("$directory/" . $file);
+                Storage::disk('s3')->delete("$directory/images/" . $file);
             }
         });
     }

@@ -17,7 +17,7 @@ class InquiryController extends Controller
     public $directory = "";
 
     public $rules = [
-        'property_id' => 'required|max:255',
+        'property_id' => 'required|exists:properties,id',
         'first_name' => 'required|max:255',
         'last_name' => 'required|max:255',
         'gender' => 'required|max:255',

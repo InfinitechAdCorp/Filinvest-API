@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->string('property_id');
+            $table->foreignUlid('property_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('mobile');

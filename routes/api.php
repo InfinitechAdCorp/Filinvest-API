@@ -10,6 +10,7 @@ use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\InquiryController;
 use App\Http\Controllers\API\AppointmentController;
 use App\Http\Controllers\API\PropertyController;
+use App\Http\Controllers\API\OfferingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +80,13 @@ Route::prefix('')->group(function () {
         Route::post('', [PropertyController::class, 'create']);
         Route::put('', [PropertyController::class, 'update']);
         Route::delete('{id}', [PropertyController::class, 'delete']);
+    });
+
+    Route::prefix('offerings')->group(function () {
+        Route::get('', [OfferingController::class, 'getAll']);
+        Route::get('{id}', [OfferingController::class, 'get']);
+        Route::post('', [OfferingController::class, 'create']);
+        Route::put('', [OfferingController::class, 'update']);
+        Route::delete('{id}', [OfferingController::class, 'delete']);
     });
 });
