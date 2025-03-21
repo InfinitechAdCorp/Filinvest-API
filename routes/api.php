@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TypeController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,13 @@ Route::prefix('')->group(function () {
         Route::post('', [FaqController::class, 'create']);
         Route::put('', [FaqController::class, 'update']);
         Route::delete('{id}', [FaqController::class, 'delete']);
+    });
+
+    Route::prefix('blogs')->group(function () {
+        Route::get('', [BlogController::class, 'getAll']);
+        Route::get('{id}', [BlogController::class, 'get']);
+        Route::post('', [BlogController::class, 'create']);
+        Route::put('', [BlogController::class, 'update']);
+        Route::delete('{id}', [BlogController::class, 'delete']);
     });
 });
