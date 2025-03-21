@@ -9,6 +9,8 @@ use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\InquiryController;
+use App\Http\Controllers\API\AppointmentController;
+use App\Models\Appointment;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,5 +70,15 @@ Route::prefix('')->group(function () {
         Route::post('', [InquiryController::class, 'create']);
         Route::put('', [InquiryController::class, 'update']);
         Route::delete('{id}', [InquiryController::class, 'delete']);
+    });
+
+    Route::prefix('appointments')->group(function () {
+        Route::post('set-status', [AppointmentController::class, 'setStatus']);
+
+        Route::get('', [AppointmentController::class, 'getAll']);
+        Route::get('{id}', [AppointmentController::class, 'get']);
+        Route::post('', [AppointmentController::class, 'create']);
+        Route::put('', [AppointmentController::class, 'update']);
+        Route::delete('{id}', [AppointmentController::class, 'delete']);
     });
 });
