@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\AwardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -8,6 +7,8 @@ use App\Http\Controllers\API\TypeController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\BlogController;
+use App\Http\Controllers\API\CareerController;
+use App\Http\Controllers\API\AwardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,13 @@ Route::prefix('')->group(function () {
         Route::post('', [AwardController::class, 'create']);
         Route::put('', [AwardController::class, 'update']);
         Route::delete('{id}', [AwardController::class, 'delete']);
+    });
+
+    Route::prefix('careers')->group(function () {
+        Route::get('', [CareerController::class, 'getAll']);
+        Route::get('{id}', [CareerController::class, 'get']);
+        Route::post('', [CareerController::class, 'create']);
+        Route::put('', [CareerController::class, 'update']);
+        Route::delete('{id}', [CareerController::class, 'delete']);
     });
 });
