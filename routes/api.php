@@ -8,6 +8,7 @@ use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\InquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,13 @@ Route::prefix('')->group(function () {
         Route::post('', [ArticleController::class, 'create']);
         Route::put('', [ArticleController::class, 'update']);
         Route::delete('{id}', [ArticleController::class, 'delete']);
+    });
+
+    Route::prefix('inquiries')->group(function () {
+        Route::get('', [InquiryController::class, 'getAll']);
+        Route::get('{id}', [InquiryController::class, 'get']);
+        Route::post('', [InquiryController::class, 'create']);
+        Route::put('', [InquiryController::class, 'update']);
+        Route::delete('{id}', [InquiryController::class, 'delete']);
     });
 });
