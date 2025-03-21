@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('careers', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('position');
-            $table->string('location');
             $table->string('type'); 
+            $table->string('location');
             $table->json('responsibilities');
             $table->json('requirements');
             $table->timestamps();

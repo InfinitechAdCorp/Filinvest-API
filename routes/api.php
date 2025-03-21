@@ -3,14 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\API\TypeController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\InquiryController;
 use App\Http\Controllers\API\AppointmentController;
-use App\Models\Appointment;
+use App\Http\Controllers\API\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,14 +23,6 @@ use App\Models\Appointment;
 */
 
 Route::prefix('')->group(function () {
-    Route::prefix('types')->group(function () {
-        Route::get('', [TypeController::class, 'getAll']);
-        Route::get('{id}', [TypeController::class, 'get']);
-        Route::post('', [TypeController::class, 'create']);
-        Route::put('', [TypeController::class, 'update']);
-        Route::delete('{id}', [TypeController::class, 'delete']);
-    });
-
     Route::prefix('testimonials')->group(function () {
         Route::get('', [TestimonialController::class, 'getAll']);
         Route::get('{id}', [TestimonialController::class, 'get']);
@@ -80,5 +71,13 @@ Route::prefix('')->group(function () {
         Route::post('', [AppointmentController::class, 'create']);
         Route::put('', [AppointmentController::class, 'update']);
         Route::delete('{id}', [AppointmentController::class, 'delete']);
+    });
+
+    Route::prefix('properties')->group(function () {
+        Route::get('', [PropertyController::class, 'getAll']);
+        Route::get('{id}', [PropertyController::class, 'get']);
+        Route::post('', [PropertyController::class, 'create']);
+        Route::put('', [PropertyController::class, 'update']);
+        Route::delete('{id}', [PropertyController::class, 'delete']);
     });
 });

@@ -7,20 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Support\Facades\Storage;
 
-class Type extends Model
+class Property extends Model
 {
     use HasFactory, HasUlids;
 
     protected $fillable = [
-        'name',
-        'description',
-        'images',
+        "name",
+        "type",
+        "minimum_price",
+        "maximum_price",
+        "location",
+        "minimum_area",
+        "maximum_area",
+        "status",
+        "description",
+        "logo",
+        "images",
+        "amenities",
     ];
 
     public static function booted()
     {
-        self::updated(function (Type $record): void {
-            $directory = "types";
+        self::updated(function (Property $record): void {
+            $directory = "properties/logos";
+            $key = "logo";
+
+            if ($record->wasChanged($key)) {
+                Storage::disk('s3')->delete("$directory/" . $record->getOriginal($key));
+            }
+
+            $directory = "properties/images";
             $key  = "images";
 
             if ($record->wasChanged($key)) {
@@ -31,8 +47,13 @@ class Type extends Model
             }
         });
 
-        self::deleted(function (Type $record): void {
-            $directory = "types";
+        self::deleted(function (Property $record): void {
+            $directory = "properties/logos";
+            $key = "logo";
+
+            Storage::disk('s3')->delete("$directory/" . $record[$key]);
+
+            $directory = "properties/images";
             $key  = "images";
 
             $files = json_decode($record[$key]);

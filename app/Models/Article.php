@@ -13,14 +13,14 @@ class Article extends Model
 
     protected $fillable = [
         'name',
-        'description',
         'type',
+        'description',
         'image',
     ];
 
     public static function booted()
     {
-        self::updated(function (Blog $record): void {
+        self::updated(function (Article $record): void {
             $directory = "articles";
             $key  = "image";
 
@@ -29,7 +29,7 @@ class Article extends Model
             }
         });
 
-        self::deleted(function (Blog $record): void {
+        self::deleted(function (Article $record): void {
             $directory = "articles";
             $key  = "image";
 

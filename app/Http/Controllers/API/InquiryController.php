@@ -32,7 +32,7 @@ class InquiryController extends Controller
     public function getAll()
     {
         $records = Model::with($this->relations)->get();
-        $response = ['message' => "Fetched $this->model" . "s", 'records' => $records];
+        $response = ['message' => "Fetched Inquiries", 'records' => $records];
         $code = 200;
         return response()->json($response, $code);
     }

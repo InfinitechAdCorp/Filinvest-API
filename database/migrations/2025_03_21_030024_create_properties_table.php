@@ -11,12 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('properties', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('type');
+            $table->double('minimum_price', 15, 2);
+            $table->double('maximum_price', 15, 2);
+            $table->string('location');
+            $table->double('minimum_area', 15, 2);
+            $table->double('maximum_area', 15, 2);
+            $table->string('status');
             $table->text('description');
-            $table->string('image');
+            $table->string('logo');
+            $table->json('images');
+            $table->json('amenities');
             $table->timestamps();
         });
     }
@@ -26,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('properties');
     }
 };

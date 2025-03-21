@@ -18,8 +18,8 @@ class ArticleController extends Controller
 
     public $rules = [
         'name' => 'required|max:255',
-        'description' => 'required',
         'type' => 'required|max:255',
+        'description' => 'required',
         'image' => 'required|file',
     ];
 
@@ -66,7 +66,7 @@ class ArticleController extends Controller
     public function update(Request $request)
     {
         $this->rules['id'] = 'required|exists:articles,id';
-        $this->rules['image'] = 'nullable';
+        $this->rules['image'] = 'nullable|file';
         $validated = $request->validate($this->rules);
 
         $record = Model::find($validated['id']);
