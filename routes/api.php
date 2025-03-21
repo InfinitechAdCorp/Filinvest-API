@@ -9,6 +9,7 @@ use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\BlogController;
 use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\AwardController;
+use App\Http\Controllers\API\NewsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,5 +69,13 @@ Route::prefix('')->group(function () {
         Route::post('', [CareerController::class, 'create']);
         Route::put('', [CareerController::class, 'update']);
         Route::delete('{id}', [CareerController::class, 'delete']);
+    });
+
+    Route::prefix('news')->group(function () {
+        Route::get('', [NewsController::class, 'getAll']);
+        Route::get('{id}', [NewsController::class, 'get']);
+        Route::post('', [NewsController::class, 'create']);
+        Route::put('', [NewsController::class, 'update']);
+        Route::delete('{id}', [NewsController::class, 'delete']);
     });
 });
