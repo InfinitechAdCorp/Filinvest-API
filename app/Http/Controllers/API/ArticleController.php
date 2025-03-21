@@ -6,19 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\Uploadable;
 
-use App\Models\Blog as Model;
+use App\Models\Article as Model;
 
-class BlogController extends Controller
+class ArticleController extends Controller
 {
     use Uploadable;
 
-    public $model = "Blog";
+    public $model = "Article";
     public $relations = [];
-    public $directory = "blogs";
+    public $directory = "articles";
 
     public $rules = [
         'name' => 'required|max:255',
         'description' => 'required',
+        'type' => 'required|max:255',
         'image' => 'required|file',
     ];
 
@@ -64,7 +65,7 @@ class BlogController extends Controller
 
     public function update(Request $request)
     {
-        $this->rules['id'] = 'required|exists:blogs,id';
+        $this->rules['id'] = 'required|exists:articles,id';
         $this->rules['image'] = 'nullable';
         $validated = $request->validate($this->rules);
 

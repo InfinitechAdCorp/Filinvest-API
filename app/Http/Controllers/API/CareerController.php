@@ -18,8 +18,8 @@ class CareerController extends Controller
 
     public $rules = [
         'position' => 'required|max:255',
-        'category' => 'required|max:255',
         'location' => 'required|max:255',
+        'type' => 'required|max:255',
         'responsibilities' => 'required|array',
         'requirements' => 'required|array',
     ];

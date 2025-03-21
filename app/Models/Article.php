@@ -7,20 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Support\Facades\Storage;
 
-class News extends Model
+class Article extends Model
 {
     use HasFactory, HasUlids;
 
     protected $fillable = [
         'name',
         'description',
+        'type',
         'image',
     ];
 
     public static function booted()
     {
-        self::updated(function (News $record): void {
-            $directory = "news";
+        self::updated(function (Blog $record): void {
+            $directory = "articles";
             $key  = "image";
 
             if ($record->wasChanged($key)) {
@@ -28,8 +29,8 @@ class News extends Model
             }
         });
 
-        self::deleted(callback: function (News $record): void {
-            $directory = "news";
+        self::deleted(function (Blog $record): void {
+            $directory = "articles";
             $key  = "image";
 
             Storage::disk('s3')->delete("$directory/" . $record[$key]);

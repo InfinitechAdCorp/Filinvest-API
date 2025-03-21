@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\TypeController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
-use App\Http\Controllers\API\BlogController;
 use App\Http\Controllers\API\CareerController;
-use App\Http\Controllers\API\AwardController;
-use App\Http\Controllers\API\NewsController;
+use App\Http\Controllers\API\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,22 +45,6 @@ Route::prefix('')->group(function () {
         Route::delete('{id}', [FaqController::class, 'delete']);
     });
 
-    Route::prefix('blogs')->group(function () {
-        Route::get('', [BlogController::class, 'getAll']);
-        Route::get('{id}', [BlogController::class, 'get']);
-        Route::post('', [BlogController::class, 'create']);
-        Route::put('', [BlogController::class, 'update']);
-        Route::delete('{id}', [BlogController::class, 'delete']);
-    });
-
-    Route::prefix('awards')->group(function () {
-        Route::get('', [AwardController::class, 'getAll']);
-        Route::get('{id}', [AwardController::class, 'get']);
-        Route::post('', [AwardController::class, 'create']);
-        Route::put('', [AwardController::class, 'update']);
-        Route::delete('{id}', [AwardController::class, 'delete']);
-    });
-
     Route::prefix('careers')->group(function () {
         Route::get('', [CareerController::class, 'getAll']);
         Route::get('{id}', [CareerController::class, 'get']);
@@ -71,11 +53,11 @@ Route::prefix('')->group(function () {
         Route::delete('{id}', [CareerController::class, 'delete']);
     });
 
-    Route::prefix('news')->group(function () {
-        Route::get('', [NewsController::class, 'getAll']);
-        Route::get('{id}', [NewsController::class, 'get']);
-        Route::post('', [NewsController::class, 'create']);
-        Route::put('', [NewsController::class, 'update']);
-        Route::delete('{id}', [NewsController::class, 'delete']);
+    Route::prefix('articles')->group(function () {
+        Route::get('', [ArticleController::class, 'getAll']);
+        Route::get('{id}', [ArticleController::class, 'get']);
+        Route::post('', [ArticleController::class, 'create']);
+        Route::put('', [ArticleController::class, 'update']);
+        Route::delete('{id}', [ArticleController::class, 'delete']);
     });
 });
