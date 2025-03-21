@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AwardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -50,5 +51,13 @@ Route::prefix('')->group(function () {
         Route::post('', [BlogController::class, 'create']);
         Route::put('', [BlogController::class, 'update']);
         Route::delete('{id}', [BlogController::class, 'delete']);
+    });
+
+    Route::prefix('awards')->group(function () {
+        Route::get('', [AwardController::class, 'getAll']);
+        Route::get('{id}', [AwardController::class, 'get']);
+        Route::post('', [AwardController::class, 'create']);
+        Route::put('', [AwardController::class, 'update']);
+        Route::delete('{id}', [AwardController::class, 'delete']);
     });
 });

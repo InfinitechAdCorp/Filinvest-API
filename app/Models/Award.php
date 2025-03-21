@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Support\Facades\Storage;
 
-class Blog extends Model
+class Award extends Model
 {
     use HasFactory, HasUlids;
 
@@ -19,8 +19,8 @@ class Blog extends Model
 
     public static function booted()
     {
-        self::updated(function (Blog $record): void {
-            $directory = "blogs";
+        self::updated(function (Award $record): void {
+            $directory = "awards";
             $key  = "image";
 
             if ($record->wasChanged($key)) {
@@ -28,8 +28,8 @@ class Blog extends Model
             }
         });
 
-        self::deleted(function (Blog $record): void {
-            $directory = "blogs";
+        self::deleted(function (Award $record): void {
+            $directory = "awards";
             $key  = "image";
 
             Storage::disk('s3')->delete("$directory/" . $record[$key]);
