@@ -18,7 +18,7 @@ class TestimonialController extends Controller
 
     public $rules = [
         'name' => 'required|max:255',
-        'message' => 'required|max:255',
+        'message' => 'required',
     ];
 
     public function getAll()
