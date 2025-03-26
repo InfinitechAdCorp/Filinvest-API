@@ -15,6 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('type');
+            $table->date('date');
             $table->text('description');
             $table->string('image');
             $table->timestamps();
