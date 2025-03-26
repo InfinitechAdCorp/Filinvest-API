@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->ulid('id')->primary();
             $table->string('name');
-            $table->string('message');
+            $table->text('message');
             $table->timestamps();
         });
     }
