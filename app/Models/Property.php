@@ -14,6 +14,7 @@ class Property extends Model
     protected $fillable = [
         "name",
         "type",
+        "subtype",
         "minimum_price",
         "maximum_price",
         "location",
@@ -21,9 +22,16 @@ class Property extends Model
         "maximum_area",
         "status",
         "description",
+        "isPublished",
+        "isFeatured",
         "logo",
         "images",
         "amenities",
+    ];
+
+    protected $attributes = [
+        "isPublished" => false,
+        "isFeatured" => false,
     ];
 
     public static function booted()

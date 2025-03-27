@@ -19,6 +19,7 @@ class PropertyController extends Controller
     public $rules = [
         'name' => 'required|max:255',
         'type' => 'required|max:255',
+        'subtype' => 'required|max:255',
         'minimum_price' => 'required|decimal:0,2',
         'maximum_price' => 'required|decimal:0,2',
         'location' => 'required|max:255',
