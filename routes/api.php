@@ -11,6 +11,7 @@ use App\Http\Controllers\API\InquiryController;
 use App\Http\Controllers\API\AppointmentController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\OfferingController;
+use App\Http\Controllers\API\SubscriberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,5 +89,13 @@ Route::prefix('')->group(function () {
         Route::post('', [OfferingController::class, 'create']);
         Route::put('', [OfferingController::class, 'update']);
         Route::delete('{id}', [OfferingController::class, 'delete']);
+    });
+
+    Route::prefix('subscribers')->group(function () {
+        Route::get('', [SubscriberController::class, 'getAll']);
+        Route::get('{id}', [SubscriberController::class, 'get']);
+        Route::post('', [SubscriberController::class, 'create']);
+        Route::put('', [SubscriberController::class, 'update']);
+        Route::delete('{id}', [SubscriberController::class, 'delete']);
     });
 });
