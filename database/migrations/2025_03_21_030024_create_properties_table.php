@@ -15,13 +15,13 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('type');
-            $table->string('subtype');
             $table->double('minimum_price', 15, 2);
             $table->double('maximum_price', 15, 2);
             $table->string('location');
             $table->double('minimum_area', 15, 2);
             $table->double('maximum_area', 15, 2);
             $table->string('status');
+            $table->string('substatus');
             $table->text('description');
             $table->boolean('isPublished');
             $table->boolean('isFeatured');
