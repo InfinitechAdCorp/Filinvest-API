@@ -18,6 +18,7 @@ return new class extends Migration
             $table->double('minimum_price', 15, 2);
             $table->double('maximum_price', 15, 2);
             $table->string('location');
+            $table->text('map');
             $table->double('minimum_area', 15, 2);
             $table->double('maximum_area', 15, 2);
             $table->string('status');

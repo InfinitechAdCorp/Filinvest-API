@@ -17,6 +17,7 @@ class Property extends Model
         "minimum_price",
         "maximum_price",
         "location",
+        "map",
         "minimum_area",
         "maximum_area",
         "status",
