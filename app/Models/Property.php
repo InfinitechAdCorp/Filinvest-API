@@ -38,7 +38,7 @@ class Property extends Model
     {
         self::updated(function (Property $record): void {
             $directory = "properties";
-            
+
             $key = "logo";
             if ($record->wasChanged($key)) {
                 Storage::disk('s3')->delete("$directory/logos/" . $record->getOriginal($key));
@@ -55,7 +55,7 @@ class Property extends Model
 
         self::deleted(function (Property $record): void {
             $directory = "properties";
-            
+
             $key = "logo";
             Storage::disk('s3')->delete("$directory/logos/" . $record[$key]);
 
@@ -65,5 +65,10 @@ class Property extends Model
                 Storage::disk('s3')->delete("$directory/images/" . $file);
             }
         });
+    }
+
+    public function offerings()
+    {
+        return $this->hasMany(Offering::class);
     }
 }

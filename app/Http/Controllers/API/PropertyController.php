@@ -13,7 +13,7 @@ class PropertyController extends Controller
     use Uploadable;
 
     public $model = "Property";
-    public $relations = [];
+    public $relations = ["offerings"];
     public $directory = "properties";
 
     public $rules = [
