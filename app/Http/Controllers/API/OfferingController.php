@@ -14,13 +14,14 @@ class OfferingController extends Controller
 
     public $model = "Offering";
     public $relations = [];
-    public $directory = "";
+    public $directory = "properties/offerings";
 
     public $rules = [
         'property_id' => 'required|exists:properties,id',
         'type' => 'required|max:255',
         'minimum_area' => 'required|decimal:0,2',
         'maximum_area' => 'required|decimal:0,2',
+        'image' => 'required|file',
     ];
 
     public function getAll()
@@ -48,6 +49,11 @@ class OfferingController extends Controller
     {
         $validated = $request->validate($this->rules);
 
+        $key = 'image';
+        if ($request[$key]) {
+            $validated[$key] = $this->upload("$this->directory", $request[$key]);
+        }
+
         $record = Model::create($validated);
 
         $response = [
@@ -61,9 +67,16 @@ class OfferingController extends Controller
     public function update(Request $request)
     {
         $this->rules['id'] = 'required|exists:offerings,id';
+        $this->rules['image'] = 'nullable|file';
         $validated = $request->validate($this->rules);
 
         $record = Model::find($validated['id']);
+
+        $key = 'image';
+        if ($request[$key]) {
+            $validated[$key] = $this->upload("$this->directory", $request[$key]);
+        }
+
         $record->update($validated);
 
         $response = ['message' => "Updated $this->model", 'record' => $record];

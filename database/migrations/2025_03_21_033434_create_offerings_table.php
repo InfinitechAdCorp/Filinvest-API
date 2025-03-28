@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('type');
             $table->double('minimum_area', 15, 2);
             $table->double('maximum_area', 15, 2);
+            $table->string('image');
             $table->timestamps();
         });
     }
