@@ -13,7 +13,7 @@ class InquiryController extends Controller
     use Uploadable;
 
     public $model = "Inquiry";
-    public $relations = [];
+    public $relations = ["property"];
     public $directory = "";
 
     public $rules = [

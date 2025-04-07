@@ -22,4 +22,9 @@ class Inquiry extends Model
         'country',
         'message',
     ];
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class);
+    }
 }
