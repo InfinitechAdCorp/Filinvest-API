@@ -41,14 +41,6 @@ Route::prefix('')->group(function () {
         Route::delete('{id}', [FaqController::class, 'delete']);
     });
 
-    Route::prefix('careers')->group(function () {
-        Route::get('', [CareerController::class, 'getAll']);
-        Route::get('{id}', [CareerController::class, 'get']);
-        Route::post('', [CareerController::class, 'create']);
-        Route::put('', [CareerController::class, 'update']);
-        Route::delete('{id}', [CareerController::class, 'delete']);
-    });
-
     Route::prefix('articles')->group(function () {
         Route::get('', [ArticleController::class, 'getAll']);
         Route::get('{id}', [ArticleController::class, 'get']);
