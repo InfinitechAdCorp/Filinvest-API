@@ -25,4 +25,9 @@ class Appointment extends Model
     protected $attributes = [
         'status' => 'Pending'
     ];
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class);
+    }
 }

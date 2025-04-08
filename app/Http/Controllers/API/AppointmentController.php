@@ -13,7 +13,7 @@ class AppointmentController extends Controller
     use Uploadable;
 
     public $model = "Appointment";
-    public $relations = [];
+    public $relations = ["property"];
     public $directory = "";
 
     public $rules = [
@@ -89,7 +89,8 @@ class AppointmentController extends Controller
         return response()->json($response, $code);
     }
 
-    public function setStatus(Request $request) {
+    public function setStatus(Request $request)
+    {
         $rules = [
             'id' => 'required|exists:appointments,id',
             'status' => 'required|max:255',
