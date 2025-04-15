@@ -21,7 +21,6 @@ class Property extends Model
         "minimum_area",
         "maximum_area",
         "status",
-        "substatus",
         "description",
         "isPublished",
         "isFeatured",

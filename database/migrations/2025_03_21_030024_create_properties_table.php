@@ -22,7 +22,6 @@ return new class extends Migration
             $table->double('minimum_area', 15, 2);
             $table->double('maximum_area', 15, 2);
             $table->string('status');
-            $table->string('substatus');
             $table->text('description');
             $table->boolean('isPublished');
             $table->boolean('isFeatured');

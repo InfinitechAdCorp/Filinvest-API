@@ -26,7 +26,6 @@ class PropertyController extends Controller
         'minimum_area' => 'required|decimal:0,2',
         'maximum_area' => 'required|decimal:0,2',
         'status' => 'required|max:255',
-        'substatus' => 'required|max:255',
         'description' => 'required',
         'logo' => 'required|file',
         'images' => 'required|array',
