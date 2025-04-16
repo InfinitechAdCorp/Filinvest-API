@@ -13,5 +13,10 @@ class Testimonial extends Model
     protected $fillable = [
         'name',
         'message',
+        'isPublished',
+    ];
+
+    protected $attributes = [
+        'isPublished' => false,
     ];
 }

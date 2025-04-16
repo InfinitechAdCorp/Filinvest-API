@@ -26,6 +26,8 @@ use App\Http\Controllers\API\SubscriberController;
 
 Route::prefix('')->group(function () {
     Route::prefix('testimonials')->group(function () {
+        Route::post('set-published', [AppointmentController::class, 'setPublished']);
+
         Route::get('', [TestimonialController::class, 'getAll']);
         Route::get('{id}', [TestimonialController::class, 'get']);
         Route::post('', [TestimonialController::class, 'create']);

@@ -82,4 +82,20 @@ class TestimonialController extends Controller
         }
         return response()->json($response, $code);
     }
+
+    public function setPublished(Request $request)
+    {
+        $rules = [
+            'id' => 'required|exists:testimonials,id',
+            'isPublished' => 'required|boolean',
+        ];
+        $validated = $request->validate($rules);
+
+        $record = Model::find($validated['id']);
+        $record->update($validated);
+
+        $response = ['message' => "Updated Published Status of $this->model", 'record' => $record];
+        $code = 200;
+        return response()->json($response, $code);
+    }
 }
