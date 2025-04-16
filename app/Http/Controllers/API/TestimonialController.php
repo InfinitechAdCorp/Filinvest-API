@@ -94,7 +94,7 @@ class TestimonialController extends Controller
         $record = Model::find($validated['id']);
         $record->update($validated);
 
-        $response = ['message' => "Updated Is Published Status of $this->model", 'record' => $record];
+        $response = ['message' => "Updated Published Status of $this->model", 'record' => $record];
         $code = 200;
         return response()->json($response, $code);
     }
