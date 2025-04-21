@@ -20,12 +20,8 @@ class InquiryController extends Controller
         'property_id' => 'required|exists:properties,id',
         'first_name' => 'required|max:255',
         'last_name' => 'required|max:255',
-        'gender' => 'required|max:255',
-        'landline' => 'required|max:255',
         'mobile' => 'required|max:255',
         'email' => 'required|email|max:255',
-        'city' => 'required|max:255',
-        'country' => 'required|max:255',
         'message' => 'required',
     ];
 

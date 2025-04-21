@@ -14,12 +14,8 @@ class Inquiry extends Model
         'property_id',
         'first_name',
         'last_name',
-        'gender',
-        'landline',
         'mobile',
         'email',
-        'city',
-        'country',
         'message',
     ];
 

@@ -16,12 +16,8 @@ return new class extends Migration
             $table->foreignUlid('property_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('gender');
-            $table->string('landline');
             $table->string('mobile');
             $table->string('email');
-            $table->string('city');
-            $table->string('country');
             $table->text('message');
             $table->timestamps();
         });
