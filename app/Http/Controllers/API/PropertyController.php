@@ -22,7 +22,7 @@ class PropertyController extends Controller
         'minimum_price' => 'required|decimal:0,2',
         'maximum_price' => 'required|decimal:0,2',
         'location' => 'required|max:255',
-        "map" => 'required|link',
+        "map" => 'nullable|link',
         'minimum_area' => 'required|decimal:0,2',
         'maximum_area' => 'required|decimal:0,2',
         'status' => 'required|max:255',
