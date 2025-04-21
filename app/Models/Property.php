@@ -14,10 +14,10 @@ class Property extends Model
     protected $fillable = [
         "name",
         "type",
-        "minimum_price",
-        "maximum_price",
         "location",
         "map",
+        "minimum_price",
+        "maximum_price",
         "minimum_area",
         "maximum_area",
         "status",

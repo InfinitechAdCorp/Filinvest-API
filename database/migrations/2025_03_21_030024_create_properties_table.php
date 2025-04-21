@@ -15,10 +15,10 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('name');
             $table->string('type');
-            $table->double('minimum_price', 15, 2);
-            $table->double('maximum_price', 15, 2);
             $table->string('location');
             $table->text('map')->nullable();
+            $table->double('minimum_price', 15, 2);
+            $table->double('maximum_price', 15, 2);
             $table->double('minimum_area', 15, 2);
             $table->double('maximum_area', 15, 2);
             $table->string('status');
