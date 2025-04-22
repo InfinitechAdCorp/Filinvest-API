@@ -135,4 +135,36 @@ class PropertyController extends Controller
         }
         return response()->json($response, $code);
     }
+
+    public function setIsPublished(Request $request)
+    {
+        $rules = [
+            'id' => 'required|exists:properties,id',
+            'isPublished' => 'required|boolean',
+        ];
+        $validated = $request->validate($rules);
+
+        $record = Model::find($validated['id']);
+        $record->update($validated);
+
+        $response = ['message' => "Updated Published Status of $this->model", 'record' => $record];
+        $code = 200;
+        return response()->json($response, $code);
+    }
+
+    public function setIsFeatured(Request $request)
+    {
+        $rules = [
+            'id' => 'required|exists:properties,id',
+            'isFeatured' => 'required|boolean',
+        ];
+        $validated = $request->validate($rules);
+
+        $record = Model::find($validated['id']);
+        $record->update($validated);
+
+        $response = ['message' => "Updated Featured Status of $this->model", 'record' => $record];
+        $code = 200;
+        return response()->json($response, $code);
+    }
 }

@@ -70,6 +70,9 @@ Route::prefix('')->group(function () {
     });
 
     Route::prefix('properties')->group(function () {
+        Route::post('set-is-published', [PropertyController::class, 'setIsPublished']);
+        Route::post('set-is-featured', [PropertyController::class, 'setIsFeatured']);
+
         Route::get('', [PropertyController::class, 'getAll']);
         Route::get('{id}', [PropertyController::class, 'get']);
         Route::post('', [PropertyController::class, 'create']);
