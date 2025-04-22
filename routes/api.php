@@ -9,6 +9,7 @@ use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\InquiryController;
 use App\Http\Controllers\API\AppointmentController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\OfferingController;
 use App\Http\Controllers\API\SubscriberController;
@@ -25,6 +26,10 @@ use App\Http\Controllers\API\SubscriberController;
 */
 
 Route::prefix('')->group(function () {
+    Route::prefix('dashboard')->group(function () {
+        Route::get('get-counts', [DashboardController::class, 'getCounts']);
+    });
+
     Route::prefix('testimonials')->group(function () {
         Route::post('set-is-published', [TestimonialController::class, 'setIsPublished']);
 
