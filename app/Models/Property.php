@@ -30,8 +30,8 @@ class Property extends Model
     ];
 
     protected $attributes = [
-        "isPublished" => false,
-        "isFeatured" => false,
+        "isPublished" => 0,
+        "isFeatured" => 0,
     ];
 
     public static function booted()

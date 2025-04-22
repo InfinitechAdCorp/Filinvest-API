@@ -17,6 +17,6 @@ class Testimonial extends Model
     ];
 
     protected $attributes = [
-        'isPublished' => false,
+        'isPublished' => 0,
     ];
 }
