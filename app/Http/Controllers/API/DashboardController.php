@@ -36,9 +36,9 @@ class DashboardController extends Controller
     {
         $year = Carbon::now()->year;
 
-        $appointments = Appointment::selectRaw("MONTHNAME(date) AS month, COUNT(id) AS count")
+        $appointments = Appointment::selectRaw("MONTHNAME(date) AS month, COUNT(id) AS Count")
             ->whereRaw("YEAR(date) = $year")->groupBy("month")->get();
-        $inquiries = Inquiry::selectRaw("MONTHNAME(created_at) AS month, COUNT(id) AS count")
+        $inquiries = Inquiry::selectRaw("MONTHNAME(created_at) AS month, COUNT(id) AS Count")
             ->whereRaw("YEAR(created_at) = $year")->groupBy("month")->get();
 
         $records = [
