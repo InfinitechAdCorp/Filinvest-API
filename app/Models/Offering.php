@@ -21,7 +21,7 @@ class Offering extends Model
 
     public static function booted()
     {
-        self::updated(function (Property $record): void {
+        self::updated(function (Offering $record): void {
             $directory = "properties/offerings";
 
             $key = "image";
@@ -30,7 +30,7 @@ class Offering extends Model
             }
         });
 
-        self::deleted(function (Property $record): void {
+        self::deleted(function (Offering $record): void {
             $directory = "properties/offerings";
 
             $key = "image";
