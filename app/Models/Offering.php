@@ -37,4 +37,9 @@ class Offering extends Model
             Storage::disk('s3')->delete("$directory/" . $record[$key]);
         });
     }
+
+    public function property()
+    {
+        return $this->belongsTo(Property::class);
+    }
 }
