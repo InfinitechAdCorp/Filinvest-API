@@ -28,6 +28,7 @@ use App\Http\Controllers\API\SubscriberController;
 Route::prefix('')->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('get-counts', [DashboardController::class, 'getCounts']);
+        Route::get('get-charts', [DashboardController::class, 'getCharts']);
     });
 
     Route::prefix('testimonials')->group(function () {
