@@ -4,17 +4,21 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use App\Models\User;
 
 class AuthenticateUser
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        $id = $request->header('user-id');
+        $record = User::find($id);
+        if ($record) {
+            if (($request->isMethod('post') || $request->isMethod('put')) && $record->role == "User") {
+                $request->request->add(['user_id' => $id]);
+            }
+            return $next($request);
+        } else {
+            return response()->json(['message' => "Invalid User ID"], 401);
+        }
     }
 }
