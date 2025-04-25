@@ -102,3 +102,7 @@ Route::prefix('')->group(function () {
         Route::delete('{id}', [SubscriberController::class, 'delete']);
     });
 });
+
+Route::prefix('user')->middleware('auth.user')->group(function () {});
+
+Route::prefix('main')->group(function () {});
