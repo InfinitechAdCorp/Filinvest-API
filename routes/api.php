@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
-use App\Http\Controllers\API\CareerController;
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\InquiryController;
 use App\Http\Controllers\API\AppointmentController;
@@ -13,6 +12,9 @@ use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\PropertyController;
 use App\Http\Controllers\API\OfferingController;
 use App\Http\Controllers\API\SubscriberController;
+
+use App\Http\Controllers\UserSideController;
+use App\Http\Controllers\MainSideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,4 +107,6 @@ Route::prefix('')->group(function () {
 
 Route::prefix('user')->middleware('auth.user')->group(function () {});
 
-Route::prefix('main')->group(function () {});
+Route::prefix('main')->group(function () {
+    Route::get('unsubscribe/{email}', [MainSideController::class, 'unsubscribe']);
+});
