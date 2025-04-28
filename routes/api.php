@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AuthController;
+
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\ArticleController;
@@ -27,7 +29,14 @@ use App\Http\Controllers\MainSideController;
 |
 */
 
-Route::prefix('')->group(function () {
+Route::prefix('auth')->group(function () {
+    Route::post('register', [AuthController::class, 'register']);
+    Route::post('login', [AuthController::class, 'login']);
+});
+
+Route::post('auth/logout', [AuthController::class, 'logout']);
+
+Route::prefix('')->middleware('auth.admin')->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('get-counts', [DashboardController::class, 'getCounts']);
         Route::get('get-charts', [DashboardController::class, 'getCharts']);
