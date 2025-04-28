@@ -117,5 +117,14 @@ Route::prefix('')->middleware('auth.admin')->group(function () {
 Route::prefix('user')->middleware('auth.user')->group(function () {});
 
 Route::prefix('main')->group(function () {
+    Route::get('testimonials', [TestimonialController::class, 'getAll']);
+    Route::get('articles', [ArticleController::class, 'getAll']);
+    Route::get('faqs', [FaqController::class, 'getAll']);
+    Route::get('testimonials', [TestimonialController::class, 'getAll']);
+    Route::get('testimonials', [TestimonialController::class, 'getAll']);
+
+    Route::get('properties', [PropertyController::class, 'getAll']);
+    Route::get('properties/{id}', [PropertyController::class, 'get']);
+
     Route::get('unsubscribe/{email}', [MainSideController::class, 'unsubscribe']);
 });
