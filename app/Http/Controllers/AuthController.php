@@ -38,9 +38,9 @@ class AuthController extends Controller
         ]);
 
         $record = Model::where('email', $validated['email'])->first();
-        $validPassword = Hash::check($validated['password'], $record->password);
+        $isValid = Hash::check($validated['password'], $record->password);
 
-        if ($record && $validPassword) {
+        if ($record && $isValid) {
             $record->tokens()->delete();
             $token = $record->createToken("$record->name-Token")->plainTextToken;
 
@@ -62,10 +62,15 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $record = PersonalAccessToken::findToken($request->bearerToken())->tokenable;
-        PersonalAccessToken::where('tokenable_id', $record->id)->delete();
 
-        $response = ['message' => 'User Logged Out'];
-        $code = 200;
+        if ($record) {
+            $record->tokens()->delete();
+            $response = ['message' => 'User Logged Out'];
+            $code = 200;
+        } else {
+            $response = ['message' => 'Invalid Credentials'];
+            $code = 401;
+        }
         return response()->json($response, $code);
     }
 }
