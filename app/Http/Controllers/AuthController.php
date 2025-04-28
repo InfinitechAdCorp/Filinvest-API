@@ -33,8 +33,8 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|min:8',
+            'email' => 'required|max:255|email',
+            'password' => 'required|min:8|max:255',
         ]);
 
         $record = Model::where('email', $validated['email'])->first();

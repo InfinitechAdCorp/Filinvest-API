@@ -10,8 +10,8 @@ class AuthenticateAdmin
 {
     public function handle(Request $request, Closure $next)
     {
-        $token = $request->bearerToken();
-        $record = PersonalAccessToken::findToken($token);
+        $record = PersonalAccessToken::findToken($request->bearerToken());
+        
         if ($record) {
             return $next($request);
         } else {
