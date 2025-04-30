@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|max:255|unique:users,name',
+            'username' => 'required|max:255|unique:users,username',
             'email' => 'required|max:255|email|unique:users,email',
             'password' => 'required|min:8|max:255',
         ]);
@@ -33,11 +33,11 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|max:255|email',
+            'username' => 'required|max:255',
             'password' => 'required|min:8|max:255',
         ]);
 
-        $record = Model::where('email', $validated['email'])->first();
+        $record = Model::where('username', $validated['username'])->first();
         $isValid = Hash::check($validated['password'], $record->password);
 
         if ($record && $isValid) {
