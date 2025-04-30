@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         if ($record && $isValid) {
             $record->tokens()->delete();
-            $token = $record->createToken("$record->name-Token")->plainTextToken;
+            $token = $record->createToken("$record->username-Token")->plainTextToken;
 
             $response = [
                 'message' => 'User Logged In',
