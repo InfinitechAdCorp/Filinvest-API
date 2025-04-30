@@ -38,7 +38,7 @@ class AuthController extends Controller
         ]);
 
         $record = Model::where('username', $validated['username'])->first();
-        $isValid = Hash::check($validated['password'], $record->password);
+        $isValid = $record ? Hash::check($validated['password'], $record->password) : false;
 
         if ($record && $isValid) {
             $record->tokens()->delete();
