@@ -41,14 +41,14 @@ class Property extends Model
 
             $key = "logo";
             if ($record->wasChanged($key)) {
-                Storage::disk('s3')->delete("$directory/logos/" . $record->getOriginal($key));
+                Storage::disk('public')->delete("$directory/logos/" . $record->getOriginal($key));
             }
 
             $key  = "images";
             if ($record->wasChanged($key)) {
                 $files = json_decode($record->getOriginal($key));
                 foreach ($files as $file) {
-                    Storage::disk('s3')->delete("$directory/images/" . $file);
+                    Storage::disk('public')->delete("$directory/images/" . $file);
                 }
             }
         });
@@ -57,12 +57,12 @@ class Property extends Model
             $directory = "properties";
 
             $key = "logo";
-            Storage::disk('s3')->delete("$directory/logos/" . $record[$key]);
+            Storage::disk('public')->delete("$directory/logos/" . $record[$key]);
 
             $key  = "images";
             $files = json_decode($record[$key]);
             foreach ($files as $file) {
-                Storage::disk('s3')->delete("$directory/images/" . $file);
+                Storage::disk('public')->delete("$directory/images/" . $file);
             }
         });
     }

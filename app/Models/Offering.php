@@ -26,7 +26,7 @@ class Offering extends Model
 
             $key = "image";
             if ($record->wasChanged($key)) {
-                Storage::disk('s3')->delete("$directory/" . $record->getOriginal($key));
+                Storage::disk('public')->delete("$directory/" . $record->getOriginal($key));
             }
         });
 
@@ -34,7 +34,7 @@ class Offering extends Model
             $directory = "properties/offerings";
 
             $key = "image";
-            Storage::disk('s3')->delete("$directory/" . $record[$key]);
+            Storage::disk('public')->delete("$directory/" . $record[$key]);
         });
     }
 
